@@ -1,0 +1,90 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>::: Gestion Produit:::</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<meta name="Content-Language" content="fr" />
+<meta name="Description" content="" />
+<meta name="Keywords" content=" Tutoriel Spring MVC-Boot-Data JPA Hibernate Bootstrap Jquery " />
+<meta name="Subject" content="" />
+<meta name="Content-Type" content="utf-8" />
+
+ <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+	<div class="row">
+		<div class="col-md-offset-2 col-md-8">
+		<h1>Rechercher Produit <br/> <small>Merci de selectionner un critere de recherche et saisir le mot de recherche: </small></h1>
+		</div>
+	</div>
+ 
+
+	<spring:url value="/produit/searchByCrieria" var="produitActionUrl" />
+
+	<form:form id="searchproduitform" class="form-horizontal" method="get"  modelAttribute="rechercheForm"  action="${produitActionUrl}">
+
+
+		<spring:message code="btn.search" var="msgBtnSsarch"/>
+ 
+	    
+	   <spring:bind path="critereRecherche">
+	   		 <div class="col-md-offset-2 col-md-12">
+				<div class="form-group">
+					<div class="col-sm-12">
+						<label class="radio-inline"> <form:radiobutton path="critereRecherche" value="idProduit" required="required" /> ID Produit
+						</label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="idCateg" /> Categorie
+					    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="desigProduit" /> Designation
+   					    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="configProduit" /> Configuration
+   					    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="marqueProduit" /> Marque
+   					    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="modeleProduit" /> Modele
+   					    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="puProduitGreater" /> Prix > =
+   				   		</label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="puProduitLess" /> > = Prix 
+    				    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="qteProduitGreater" /> Quantite > =
+   					    </label> <label class="radio-inline"> <form:radiobutton path="critereRecherche" value="qteProduitLess" /> > = Quantite 
+   
+						</label> <br />
+						<form:errors path="critereRecherche" class="control-label" />
+					</div>
+				</div>
+			</div>
+		</spring:bind>
+		
+	
+		<div class="row">
+			<div class="col-md-offset-2 col-md-6">
+				<div class="form-group">
+				<label></label>
+				<form:input type="text"  required="required" data-validation="length" data-validation-length="max50" path="motRecherche"  class="form-control"  value="${produitForm.motRecherche}" placeholder="Rechercher dans Produit" />
+ 			    <form:errors path="motRecherche" class="control-label" />
+ 				</div>
+			</div>
+		</div>
+
+
+   	
+		<div class="row">
+			<div class="col-md-offset-3 col-md-1">
+						<button type="submit" class="btn  btn-primary">${msgBtnSsarch}</button>
+	       </div>
+   </div>
+ </form:form>
+
+</div>
+<script>
+  $.validate({
+  });
+</script>
+		
+<div th:replace="fragments/header :: header"></div>
+	
+</body>
+</html>

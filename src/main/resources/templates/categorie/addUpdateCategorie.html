@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>::: Gestion Categorie:::</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<meta name="Content-Language" content="fr" />
+<meta name="Description" content="" />
+<meta name="Keywords" content=" Tutoriel Spring MVC-Boot-Data JPA Hibernate Bootstrap Jquery " />
+<meta name="Subject" content="" />
+<meta name="Content-Type" content="utf-8" />
+
+ <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+
+	<div class="container">
+
+
+		<section class="h-100">
+			<div class="container h-100">
+				<div class="row justify-content-md-center h-100">
+					<div class="card-wrapper">
+
+						<div class="card fat">
+							<div class="card-body">
+										<h1 th:if="${categorieForm.idCateg != null}" class="card-title">Modifier categorie </h1>
+										<h4 th:if="${categorieForm.idCateg != null}" class="card-title">Merci de mettre à jour ces données</h4>
+										<h1 th:unless="${categorieForm.idCateg != null}" class="card-title">Nouvelle categorie </h1>
+										<h4 th:unless="${categorieForm.idCateg != null}" class="card-title">Merci de renseigner ces données</h4>
+
+								<form id="categorieform" class="form-horizontal" th:object="${categorieForm}" th:action="@{/categorie/save}" method="post">
+
+
+									<input type="hidden" th:field="*{idCateg}"/>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Code :</label>
+											<input type="text" th:field="*{codeCateg}" 
+												class="form-control" th:value="${categorieForm.codeCateg}"
+												placeholder="Code" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Code est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Code doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Code ne doit pas dépasser 100" />
+										</div>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Libelle  :</label>
+											<input type="text" th:field="*{libelleCateg}" 
+											    class="form-control" th:value="${categorieForm.libelleCateg}" 
+											    placeholder="Libelle"	required="required" 
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Libelle est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Libelle doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Libelle ne doit pas dépasser 100" />
+										</div>
+										
+									<div class="form-group m-0">
+										<button th:if="${categorieForm.idCateg != null}" type="submit" class="btn btn-primary">
+											Modifier</button>
+											
+										<button th:unless="${categorieForm.idCateg != null}" type="submit" class="btn btn-success">
+											Enregistrer</button>
+											
+										<input class="btn btn-secondary" type="reset" value="Effacer">
+											
+									</div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- JavaScript Placed at the end of the document so the pages load faster -->
+  	<script src="../../js/jquery-3.3.1.slim.min.js" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+    <script src="../../js/jquery.form-validator.min.js" th:src="@{/js/jquery.form-validator.min.js}"></script>
+    <script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+
+	<script>
+	$.validate();
+	</script>
+
+
+</body>
+</html>

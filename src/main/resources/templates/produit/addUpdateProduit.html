@@ -1,0 +1,175 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>::: Gestion Produit:::</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<meta name="Content-Language" content="fr" />
+<meta name="Description" content="" />
+<meta name="Keywords" content=" Tutoriel Spring MVC-Boot-Data JPA Hibernate Bootstrap Jquery " />
+<meta name="Subject" content="" />
+<meta name="Content-Type" content="utf-8" />
+
+ <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+
+	<div class="container">
+
+
+		<section class="h-100">
+			<div class="container h-100">
+				<div class="row justify-content-md-center h-100">
+					<div class="card-wrapper">
+
+						<div class="card fat">
+							<div class="card-body">
+										<h1 th:if="${produitForm.idProduit != null}" class="card-title">Modifier produit </h1>
+										<h4 th:if="${produitForm.idProduit != null}" class="card-title">Merci de mettre à jour ces données</h4>
+										<h1 th:unless="${produitForm.idProduit != null}" class="card-title">Nouveau produit </h1>
+										<h4 th:unless="${produitForm.idProduit != null}" class="card-title">Merci de renseigner ces données</h4>
+
+								<form id="produitform" class="form-horizontal" th:object="${produitForm}" th:action="@{/produit/save}" method="post">
+
+
+									<input type="hidden" th:field="*{idProduit}"/>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Categorie :</label>
+											<input th:if="${produitForm.idProduit != null}"  type="text" th:field="*{categorie.idCateg}"
+												class="form-control"
+												th:value="${produitForm.categorie.idCateg}"
+												placeholder="Catégorie" required="required"
+												data-validation="required number"
+												data-validation-allowing="range[1;101]"
+												data-validation-length="max3"
+												data-validation-error-msg-required="Champs Catégorie est Obligatoire !"
+												data-validation-error-msg-number="Champs Catégorie doit étre numérique entre 1 et 100!" />
+												
+											 <input th:unless="${produitForm.idProduit != null}"  type="text" th:field="*{categorie.idCateg}"
+												class="form-control"
+												placeholder="Catégorie" required="required"
+												data-validation="required number"
+												data-validation-allowing="range[1;101]"
+												data-validation-length="max3"
+												data-validation-error-msg-required="Champs Catégorie est Obligatoire !"
+												data-validation-error-msg-number="Champs Catégorie doit étre numérique entre 1 et 100!" />
+
+										</div>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Désignation :</label>
+											<input type="text" th:field="*{desigProduit}" 
+												class="form-control" th:value="${produitForm.desigProduit}"
+												placeholder="Désignation" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Désignation est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Désignation doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Désignation ne doit pas dépasser 100" />
+										</div>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Prix :</label>
+											<input type="number" th:field="*{puProduit}" 
+											    class="form-control" th:value="${produitForm.puProduit}" 
+											    placeholder="Prix"	required="required" 
+												data-validation="required number"
+												data-validation-ignore=".,,"
+												data-validation-error-msg-required="Champs Prix est Obligatoire !"
+												data-validation-error-msg-number="Champs Prix doit étre numérique décimal" />
+										</div>
+
+										<div class="form-group">
+											<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Quantité :</label>
+											<input type="number" th:field="*{qteProduit}"
+												class="form-control" th:value="${produitForm.qteProduit}"
+												placeholder="Quantité" required="required"
+												data-validation="number"
+												data-validation-allowing="range[1;100001]"
+												data-validation-length="max5"
+												data-validation-error-msg-required="Champs Quantité est Obligatoire !"
+												data-validation-error-msg-number="Champs Quantité doit étre numérique entier ne dépassant pas la valeur 100000 " />
+										</div>
+
+										<div class="form-group">
+												<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Configuration :</label>
+											<input type="text" th:field="*{configProduit}"
+												class="form-control" th:value="${produitForm.configProduit}"
+												placeholder="Configuration" required="required"
+												data-validation-length="max100"
+												data-validation="required length"
+												data-validation-error-msg-required="Champs Configuration est Obligatoire"
+												data-validation-error-msg-length="Taille du champs Configuration ne doit pas dépasser 100" />
+										</div>
+
+										<div class="form-group">
+											<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Marque :</label>
+											<input type="text" th:field="*{marqueProduit}"
+												class="form-control" th:value="${produitForm.marqueProduit}"
+												placeholder="Marque" required="required"
+												data-validation-length="max50"
+												data-validation="required length"
+												data-validation-error-msg-required="Champs Marque est Obligatoire"
+												data-validation-error-msg-length="Taille du champs Marque ne doit pas dépasser 50" />
+										</div>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Modele  :</label>
+											<input type="text" th:field="*{modeleProduit}"
+												class="form-control" th:value="${produitForm.modeleProduit}"
+												placeholder="Modèle" required="required"
+												data-validation-length="max50"
+												data-validation="required length"
+												data-validation-error-msg-required="Champs Modèle est Obligatoire"
+												data-validation-error-msg-length="Taille du champs Modèle ne doit pas dépasser 50" />
+										</div>
+										
+									<div class="form-group m-0">
+										<button th:if="${produitForm.idProduit != null}" type="submit" class="btn btn-primary">
+											Modifier</button>
+											
+										<button th:unless="${produitForm.idProduit != null}" type="submit" class="btn btn-success">
+											Enregistrer</button>
+											
+										<input class="btn btn-secondary" type="reset" value="Effacer">
+											
+									</div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- JavaScript Placed at the end of the document so the pages load faster -->
+  	<script src="../../js/jquery-3.3.1.slim.min.js" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+    <script src="../../js/jquery.form-validator.min.js" th:src="@{/js/jquery.form-validator.min.js}"></script>
+    <script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+
+	<script>
+	$.validate();
+	</script>
+
+
+</body>
+</html>

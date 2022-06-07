@@ -1,0 +1,165 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>::: Gestion Commande:::</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<meta name="Content-Language" content="fr" />
+<meta name="Description" content="" />
+<meta name="Keywords" content=" Tutoriel Spring MVC-Boot-Data JPA Hibernate Bootstrap Jquery " />
+<meta name="Subject" content="" />
+<meta name="Content-Type" content="utf-8" />
+
+ <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+
+	<div class="container">
+
+
+		<section class="h-100">
+			<div class="container h-100">
+				<div class="row justify-content-md-center h-100">
+					<div class="card-wrapper">
+
+						<div class="card fat">
+							<div class="card-body">
+										<h1 th:if="${commandeForm.idCommande != null}" class="card-title">Modifier commande </h1>
+										<h4 th:if="${commandeForm.idCommande != null}" class="card-title">Merci de mettre à jour ces données</h4>
+										<h1 th:unless="${commandeForm.idCommande != null}" class="card-title">Nouvelle Commande </h1>
+										<h4 th:unless="${commandeForm.idCommande != null}" class="card-title">Merci de renseigner ces données</h4>
+
+								<form id="commandeform" class="form-horizontal" th:object="${commandeForm}" th:action="@{/commande/save}" method="post">
+
+
+									<input type="hidden" th:field="*{idCommande}"/>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Catégorie :</label>
+											<input th:if="${commandeForm.idCommande != null}"  type="text" th:field="*{client.idClient}"
+												class="form-control"
+												th:value="${commandeForm.client.idClient}"
+												placeholder="Client" required="required"
+												data-validation="required number"
+												data-validation-allowing="range[1;101]"
+												data-validation-length="max3"
+												data-validation-error-msg-required="Champs Client est Obligatoire !"
+												data-validation-error-msg-number="Champs Client doit étre numérique entre 1 et 100!" />
+												
+											 <input th:unless="${commandeForm.idCommande != null}"  type="text" th:field="*{client.idClient}"
+												class="form-control"
+												placeholder="Catégorie" required="required"
+												data-validation="required number"
+												data-validation-allowing="range[1;101]"
+												data-validation-length="max3"
+												data-validation-error-msg-required="Champs Catégorie est Obligatoire !"
+												data-validation-error-msg-number="Champs Catégorie doit étre numérique entre 1 et 100!" />
+
+										</div>
+										
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Produit :</label>
+											<input th:if="${commandeForm.idCommande != null}"  type="text" th:field="*{produit.idProduit}"
+												class="form-control"
+												th:value="${commandeForm.produit.idProduit}"
+												placeholder="Produit" required="required"
+												data-validation="required number"
+												data-validation-allowing="range[1;101]"
+												data-validation-length="max3"
+												data-validation-error-msg-required="Champs Client est Obligatoire !"
+												data-validation-error-msg-number="Champs Client doit étre numérique entre 1 et 100!" />
+												
+											 <input th:unless="${commandeForm.idCommande != null}"  type="text" th:field="*{produit.idProduit}"
+												class="form-control"
+												placeholder="Produit" required="required"
+												data-validation="required number"
+												data-validation-allowing="range[1;101]"
+												data-validation-length="max3"
+												data-validation-error-msg-required="Champs Produit est Obligatoire !"
+												data-validation-error-msg-number="Champs Produit doit étre numérique entre 1 et 100!" />
+
+										</div>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Quantité :</label>
+											<input type="text" th:field="*{qteCommande}" 
+												class="form-control" th:value="${commandeForm.qteCommande}"
+												placeholder="Quantité" required="required"
+												data-validation="number"
+												data-validation-allowing="range[1;100001]"
+												data-validation-length="max5"
+												data-validation-error-msg-required="Champs Quantité est Obligatoire !"
+												data-validation-error-msg-number="Champs Quantité doit étre numérique entier ne dépassant pas la valeur 100000 " />
+										</div>
+
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Date :</label>
+											<input type="text" th:field="*{dateCommande}" 
+											    class="form-control" th:value="${commandeForm.dateCommande}" 
+											    placeholder="Date"	required="required" 
+											    data-validation-length="max100"
+												data-validation-allowing="/"
+												data-validation-error-msg-required="Champs date est Obligatoire !"
+												data-validation-error-msg-length="Taille du date Code ne doit pas dépasser 100" /> 
+										</div>
+
+										<div class="form-group">
+											<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Prix :</label>
+											<input type="text" th:field="*{etatCommande}"
+												class="form-control" th:value="${commandeForm.etatCommande}"
+												placeholder="Etat" required="required"
+												data-validation="required number"
+												data-validation-ignore=".,,"
+												data-validation-error-msg-required="Champs Prix est Obligatoire !"
+												data-validation-error-msg-number="Champs Prix doit étre numérique décimal" />
+										</div>
+
+									
+										
+									<div class="form-group m-0">
+										<button th:if="${commandeForm.idCommande != null}" type="submit" class="btn btn-primary">
+											Modifier</button>
+											
+										<button th:unless="${commandeForm.idCommande != null}" type="submit" class="btn btn-success">
+											Enregistrer</button>
+											
+										<input class="btn btn-secondary" type="reset" value="Effacer">
+											
+									</div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- JavaScript Placed at the end of the document so the pages load faster -->
+  	<script src="../../js/jquery-3.3.1.slim.min.js" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+    <script src="../../js/jquery.form-validator.min.js" th:src="@{/js/jquery.form-validator.min.js}"></script>
+    <script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+
+	<script>
+	$.validate();
+	</script>
+
+
+</body>
+</html>

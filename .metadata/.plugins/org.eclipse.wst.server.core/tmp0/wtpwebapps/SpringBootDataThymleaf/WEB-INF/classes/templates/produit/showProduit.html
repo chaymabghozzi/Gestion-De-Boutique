@@ -1,0 +1,97 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>::: Gestion Produit:::</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<meta name="Content-Language" content="fr" />
+<meta name="Description" content="" />
+<meta name="Keywords" content=" Tutoriel Spring MVC-Boot-Data JPA Hibernate Bootstrap Jquery " />
+<meta name="Subject" content="" />
+<meta name="Content-Type" content="utf-8" />
+
+ <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+</head>
+
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+
+	<div class="container">
+		<section class="h-100">
+			<div class="container h-100">
+				<div class="row justify-content-md-center h-100">
+					<div class="card-wrapper">
+
+						<div class="card fat">
+							<div class="card-body">
+								<h1>Consulter Produit</h1>
+
+								<br />
+
+
+								<div class="row">
+									<label class="col-sm-2">ID</label>
+									<div class="col-sm-10" th:text="${produitToShow.idProduit}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Catégorie</label>
+									<div class="col-sm-10"
+										th:text="${produitToShow.categorie.idCateg}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Désignation</label>
+									<div class="col-sm-10" th:text="${produitToShow.desigProduit}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Prix</label>
+									<div class="col-sm-10" th:text="${produitToShow.puProduit}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Qt&</label>
+									<div class="col-sm-10" th:text="${produitToShow.qteProduit}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Configuration</label>
+									<div class="col-sm-10" th:text="${produitToShow.configProduit}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Marque</label>
+									<div class="col-sm-10" th:text="${produitToShow.marqueProduit}"></div>
+								</div>
+
+								<div class="row">
+									<label class="col-sm-2">Modèle</label>
+									<div class="col-sm-10" th:text="${produitToShow.modeleProduit}"></div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"></div>
+		
+</body>
+</html>

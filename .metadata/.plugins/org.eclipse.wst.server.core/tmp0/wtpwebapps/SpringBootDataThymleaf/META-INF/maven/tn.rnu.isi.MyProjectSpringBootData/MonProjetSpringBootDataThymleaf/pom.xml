@@ -1,0 +1,171 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	
+	<groupId>tn.rnu.isi.MyProjectSpringBootData</groupId>
+	<artifactId>MonProjetSpringBootDataThymleaf</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>MonProjetSpringBootDataThymleaf</name>
+	<description>Mon Projet Spring Boot Data Thymleaf</description>
+	
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.6.RELEASE</version>	
+	</parent>
+		
+	<dependencies>
+
+		<!-- This is a web application -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		 
+		 <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-context-support</artifactId>
+		 </dependency>
+		 
+		 <dependency>
+		    <groupId>org.springframework.boot</groupId>
+		    <artifactId>spring-boot-autoconfigure</artifactId>
+		</dependency>
+
+		 <dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-tx</artifactId>
+		 </dependency>
+
+		<!-- template Thymeleaf-->
+		 <dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		
+		<!-- Tomcat embedded container-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+ 
+		<!-- JSTL for JSP -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+
+		<!-- Need this to compile JSP -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Need this to compile JSP,
+			tomcat-embed-jasper version is not working, no idea why -->
+		<dependency>
+			<groupId>org.eclipse.jdt.core.compiler</groupId>
+			<artifactId>ecj</artifactId>
+			<version>4.6.1</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!-- Optional, test for static content, bootstrap CSS-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>4.1.0</version>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>3.3.1-1</version>
+		</dependency>
+		
+		<dependency>
+		    <groupId>org.webjars</groupId>
+		    <artifactId>popper.js</artifactId>
+		    <version>1.14.4</version>
+		</dependency>
+		
+		 <!-- Spring data JPA, default tomcat pool, exclude it -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.tomcat</groupId>
+                    <artifactId>tomcat-jdbc</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <!-- Oracle JDBC driver -->
+<!--         <dependency> -->
+<!--             <groupId>com.oracle</groupId> -->
+<!--             <artifactId>ojdbc7</artifactId> -->
+<!--             <version>12.1.0</version> -->
+<!--         </dependency> -->
+
+        <!-- PostgreSQL JDBC driver -->
+			<dependency>
+			            <groupId>org.postgresql</groupId>
+			            <artifactId>postgresql</artifactId>
+			            <version>42.2.5</version>
+			            <scope>runtime</scope>
+			</dependency>
+		
+        <!-- HikariCP connection pool -->
+<!--         <dependency> -->
+<!--             <groupId>com.zaxxer</groupId> -->
+<!--             <artifactId>HikariCP</artifactId> -->
+<!--             <version>2.6.0</version>$NO-MVN-MAN-VER$ -->
+<!--         </dependency> --> 
+       <dependency>
+	        <groupId>com.zaxxer</groupId>
+	        <artifactId>HikariCP</artifactId>
+	        <version>3.1.0</version>
+   		 </dependency>
+   		 
+   		 <dependency>
+		    <groupId>org.javassist</groupId>
+		    <artifactId>javassist</artifactId>
+		    <version>3.23.1-GA</version>
+		</dependency>
+        
+<!--    JDK 9/10 only :::: JAX-B APIs as a maven dependency Proper long-term solution: (All JDK versions) -->
+    <dependency>
+        <groupId>javax.xml.bind</groupId>
+        <artifactId>jaxb-api</artifactId>
+        <version>2.3.0</version>
+    </dependency>
+ <!--  JDK 9/10 only :::: JAX-B APIs as a maven dependency Proper long-term solution: (All JDK versions) -->
+        
+  	</dependencies>
+  	
+	<build>
+		<plugins>
+			<!-- Package as an executable jar/war -->
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+	
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<start-class>tn.rnu.isi.Application</start-class>
+		<java.version>1.8</java.version> <!-- Si JDK 8 alors java.version = 1.8 -->
+	</properties>
+	
+ 
+	
+</project>

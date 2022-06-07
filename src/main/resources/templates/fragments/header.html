@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head lang="fr">
+<div th:fragment="header-css"> <!-- header-css sera inclus dans les autres <head> des pages -->
+	<link href="../../css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" rel="stylesheet" />
+	<link href="../../css/navbar-top-fixed.css" th:href="@{/css/navbar-top-fixed.css}" rel="stylesheet" />
+	<link href="../../css/offcanvas.css" th:href="@{/css/offcanvas.css}" rel="stylesheet" />
+	<link href="../../css/sticky-footer-navbar.css" th:href="@{/css/sticky-footer-navbar.css}" rel="stylesheet">
+	
+</div>
+</head>
+<body>
+
+<div th:fragment="header"> <!-- header sera inclus dans les autres pages -->
+ 
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+      <a class="navbar-brand" href="#" th:href="@{/}">Gestion Boutique</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav mr-auto">
+           <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle active" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Client</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown01">
+              <a class="dropdown-item" th:href="@{/client/new}">Nouveau Client</a>
+              <a class="dropdown-item" th:href="@{/client/listAll}">Lister Tous</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Commande</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown02">
+              <a class="dropdown-item" th:href="@{/commande/new}">Nouvelle Commande</a>
+              <a class="dropdown-item" th:href="@{/commande/listAll}">Lister Tous</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Produit</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown03">
+              <a class="dropdown-item"  th:href="@{/produit/new}">Nouveau Produit</a>
+              <a class="dropdown-item"  th:href="@{/produit/listAll}">Lister Tous</a>
+            </div>
+          </li>
+          <li class="nav-item dropdown active">
+            <a class="nav-link dropdown-toggle" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Gestion Catégorie</a>
+            <div class="dropdown-menu" aria-labelledby="dropdown04">
+              <a class="dropdown-item" th:href="@{/categorie/new}">Nouvelle Categorie</a>
+              <a class="dropdown-item" th:href="@{/categorie/listAll}">Lister Tous</a>
+            </div>
+          </li>
+        </ul>
+        
+        <form class="form-inline mt-2 mt-md-0">
+          <input class="form-control mr-sm-2" type="text" placeholder="Rechercher" aria-label="Rechercher">
+          <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+      </div>
+    </nav>
+
+ </div>
+</body>
+</html>

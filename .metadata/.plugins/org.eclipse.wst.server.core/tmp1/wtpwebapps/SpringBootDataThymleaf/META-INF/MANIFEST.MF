@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: PC
+Build-Jdk: 17
+Implementation-Title: MonProjetSpringBootDataThymleaf
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: tn.rnu.isi.MyProjectSpringBootData
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/MonProjetSpringBootDataThymleaf
+Main-Class: tn.rnu.isi.Application
+Created-By: Maven Integration for Eclipse
+

@@ -1,0 +1,247 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<title>::: Gestion Categorie:::</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+<meta name="Content-Language" content="fr" />
+<meta name="Description" content="" />
+<meta name="Keywords" content=" Tutoriel Spring MVC-Boot-Data JPA Hibernate Bootstrap Jquery " />
+<meta name="Subject" content="" />
+<meta name="Content-Type" content="utf-8" />
+
+ <div th:replace="fragments/header :: header-css"/>
+
+</head>
+
+
+<body>
+
+<div th:replace="fragments/header :: header"></div>
+
+
+	<div class="container">
+
+
+		<section class="h-100">
+			<div class="container h-100">
+				<div class="row justify-content-md-center h-100">
+					<div class="card-wrapper">
+
+						<div class="card fat">
+							<div class="card-body">
+										<h1 th:if="${clientForm.idClient != null}" class="card-title">Modifier client </h1>
+										<h4 th:if="${clientForm.idClient != null}" class="card-title">Merci de mettre à jour ces données</h4>
+										<h1 th:unless="${clientForm.idClient != null}" class="card-title">Nouveau client </h1>
+										<h4 th:unless="${clientForm.idClient != null}" class="card-title">Merci de renseigner ces données</h4>
+
+								<form id="categorieform" class="form-horizontal" th:object="${clientForm}" th:action="@{/client/save}" method="post">
+
+
+									<input type="hidden" th:field="*{idClient}"/>
+
+										<div class="form-group">
+											<input type="text" th:field="*{loginClient}" 
+												class="form-control" th:value="${clientForm.loginClient}"
+												placeholder="Login" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Login est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Login doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Login ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Mot de passe :</label>
+											<input type="password" th:field="*{motPasseClient}" 
+												class="form-control" th:value="${clientForm.motPasseClient}"
+												placeholder="Mot de passe" required="required"
+												data-validation-length="max10"
+						
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs mot de passe est Obligatoire !"
+												data-validation-error-msg-alphanumeric="Le mot de passe doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs mot de passe ne doit pas dépasser 10" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Nom :</label>
+											<input type="text" th:field="*{nomClient}" 
+												class="form-control" th:value="${clientForm.nomClient}"
+												placeholder="Nom" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Nom est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Nom doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du Nom Code ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+									<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Prenom :</label>
+											<input type="text" th:field="*{prenomClient}" 
+												class="form-control" th:value="${clientForm.prenomClient}"
+												placeholder="Prenom" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs prenom est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Prenom doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs prenom ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Civilite :</label>
+											<input type="text" th:field="*{civiliteClient}" 
+												class="form-control" th:value="${clientForm.civiliteClient}"
+												placeholder="Civilité" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Civilité est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Civilité doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Civilité ne doit pas dépasser 100" />
+										</div>
+										
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Date de naissance :</label>
+											<input type="date" th:field="*{dateNaissanceClient}" value="Date de naissance"
+												class="form-control" th:value="${clientForm.dateNaissanceClient}"
+												placeholder="Date de naissance" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Date de Naissance de naissance est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Date de Naissance doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Date de Naissance de naissance ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Adresse :</label>
+											<input type="text" th:field="*{numeroAdrClient}" 
+												class="form-control" th:value="${clientForm.numeroAdrClient}"
+												placeholder="Adresse" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Adresse est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Adresse doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Adresse ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Rue :</label>
+											<input type="text" th:field="*{rueAdrClient}" 
+												class="form-control" th:value="${clientForm.rueAdrClient}"
+												placeholder="Rue" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Rue est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Rue doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Rue ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Commune :</label>
+											<input type="text" th:field="*{communeAdrClient}" 
+												class="form-control" th:value="${clientForm.communeAdrClient}"
+												placeholder="Commune" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Commune est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Commune doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Commune ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Ville :</label>
+											<input type="text" th:field="*{villeAdrClient}" 
+												class="form-control" th:value="${clientForm.villeAdrClient}"
+												placeholder="Ville" required="required"
+												data-validation-length="max100"
+												data-validation-allowing="-_ ééé'&"
+												data-validation="required alphanumeric length"
+												data-validation-error-msg-required="Champs Ville est Obligatoire !"
+												data-validation-error-msg-alphanumeric="La Ville doit contenir uniquement des cacartéres alphanumérique"
+												data-validation-error-msg-length="Taille du champs Ville ne doit pas dépasser 100" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Code Postal :</label>
+											<input type="number" th:field="*{cpAdrClient}" 
+											    class="form-control" th:value="${clientForm.cpAdrClient}" 
+											    placeholder="Code Postal"	required="required" 
+												data-validation-length="max4"
+					
+												data-validation-error-msg-required="Champs CP est Obligatoire !"
+											 />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Telephone fixe :</label>
+											<input type="tel" th:field="*{telClient}" 
+												class="form-control" th:value="${clientForm.telClient}"
+												placeholder="Telephone" required="required"
+												
+												data-validation-error-msg-length="Taille du champs Telephone ne doit pas dépasser 8" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Fax :</label>
+											<input type="tel" th:field="*{faxClient}" 
+												class="form-control" th:value="${clientForm.faxClient}"
+												placeholder="Fax" required="required"
+												
+												data-validation-error-msg-required="Champs fax est Obligatoire !"
+												data-validation-error-msg-length="Taille du champs fax ne doit pas dépasser 8" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">GSM :</label>
+											<input type="tel" th:field="*{gsmClient}" 
+												class="form-control" th:value="${clientForm.gsmClient}"
+												placeholder="GSM" required="required"
+												data-validation-error-msg-required="Champs GSM est Obligatoire !" />
+										</div>
+										<div class="form-group">
+										<label for="bday" style="font-family:arial,garamond,serif;font-size:16px;">Email :</label>
+											<input type="email" th:field="*{emailClient}" 
+												class="form-control" th:value="${clientForm.emailClient}"
+												placeholder="Email" required="required"
+		
+												data-validation-error-msg-required="Champs Email est Obligatoire !" />
+												
+										</div>
+										
+									<div class="form-group m-0">
+										<button th:if="${clientForm.idClient != null}" type="submit" class="btn btn-primary">
+											Modifier</button>
+											
+										<button th:unless="${clientForm.idClient != null}" type="submit" class="btn btn-success">
+											Enregistrer</button>
+											
+										<input class="btn btn-secondary" type="reset" value="Effacer">
+											
+									</div>
+								</form>
+								
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer :: footer"></div>
+
+
+<!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- JavaScript Placed at the end of the document so the pages load faster -->
+  	<script src="../../js/jquery-3.3.1.slim.min.js" th:src="@{/js/jquery-3.3.1.slim.min.js}"></script>
+    <script src="../../js/jquery.form-validator.min.js" th:src="@{/js/jquery.form-validator.min.js}"></script>
+    <script src="../../js/bootstrap.min.js" th:src="@{/js/bootstrap.min.js}"></script>
+
+
+	<script>
+	$.validate();
+	</script>
+
+
+</body>
+</html>
